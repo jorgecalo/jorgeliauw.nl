@@ -1,0 +1,190 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = 'Jorge Liauw Calo | Security Engineer at Google Cloud',
+  description = 'Security Engineer at Google Cloud with 13+ years of experience in Cybersecurity across Semiconductor, Banking, Fintech, and Insurance.',
+  image = '/images/jorge-google-cloud-portrait.png',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://jorgeliauw.nl');
+---
+
+<!doctype html>
+<html lang="en" class="dark scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL.toString()} />
+
+    <!-- Security Headers via Meta Tags -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL.toString()} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site || 'https://jorgeliauw.nl').toString()} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P8ZKGKRFZ8"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-P8ZKGKRFZ8');
+    </script>
+  </head>
+  <body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-cyan-500/30 selection:text-cyan-200 min-h-screen flex flex-col relative overflow-x-hidden">
+    <!-- Subtle Background Glow & Grid -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+      <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[130px]"></div>
+      <div class="absolute top-1/3 right-10 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[120px]"></div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/80 border-b border-slate-800/80">
+      <!-- Subtle Google 4-Color Top Accent Bar -->
+      <div class="w-full h-[3px] grid grid-cols-4 relative overflow-hidden">
+        <div class="bg-[#4285F4]"></div>
+        <div class="bg-[#EA4335]"></div>
+        <div class="bg-[#FBBC05]"></div>
+        <div class="bg-[#34A853]"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#4285F4]/40 via-[#EA4335]/40 to-[#34A853]/40 blur-sm"></div>
+      </div>
+
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 via-cyan-400 to-emerald-400 p-[1px] shadow-lg shadow-cyan-500/10 group-hover:shadow-cyan-500/25 transition-all">
+            <div class="w-full h-full bg-slate-950 rounded-[11px] flex items-center justify-center">
+              <svg class="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+              </svg>
+            </div>
+          </div>
+          <div>
+            <span class="text-lg font-bold tracking-tight text-white group-hover:text-cyan-400 transition-colors">Jorge Liauw Calo</span>
+            <span class="block text-xs font-mono text-slate-400">Security Engineer @ Google Cloud</span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+          <a href="/" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all">Home</a>
+          <a href="/posts/" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all">Articles</a>
+          <a href="/about/" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all">About</a>
+          <a href="/contact/" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all">Contact</a>
+          <div class="h-5 w-[1px] bg-slate-800 mx-2"></div>
+          <a
+            href="https://www.linkedin.com/in/jorgeliauw/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white shadow-md shadow-blue-500/20 transition-all"
+          >
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="mobile-menu-btn"
+          type="button"
+          aria-label="Toggle Menu"
+          aria-expanded="false"
+          class="md:hidden p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white focus:outline-none"
+        >
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Dropdown -->
+      <div id="mobile-menu" class="hidden md:hidden border-b border-slate-800 bg-slate-950/95 px-4 pt-2 pb-6 space-y-2">
+        <a href="/" class="block px-4 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800">Home</a>
+        <a href="/posts/" class="block px-4 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800">Articles</a>
+        <a href="/about/" class="block px-4 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800">About</a>
+        <a href="/contact/" class="block px-4 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:bg-slate-800">Contact</a>
+        <a
+          href="https://www.linkedin.com/in/jorgeliauw/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-3 flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-blue-600 to-cyan-600 text-white"
+        >
+          Connect on LinkedIn
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow z-10">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="z-10 border-t border-slate-800/80 bg-slate-950/90 mt-24">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+          <div>
+            <div class="flex items-center gap-2.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="font-bold text-white tracking-tight">jorgeliauw.nl</span>
+            </div>
+            <p class="text-sm text-slate-400 mt-2">
+              Security Engineer at <strong class="text-slate-200">Google Cloud</strong> with 13+ years in Cybersecurity. Member of Google Cloud Community BeNeLux &amp; Google Cloud Security Community Amsterdam.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-6 md:justify-center text-sm text-slate-400">
+            <a href="/" class="hover:text-white transition-colors">Home</a>
+            <a href="/posts/" class="hover:text-white transition-colors">Articles</a>
+            <a href="/about/" class="hover:text-white transition-colors">About</a>
+            <a href="/contact/" class="hover:text-white transition-colors">Contact</a>
+          </div>
+
+          <div class="md:text-right text-sm text-slate-400">
+            <p>&copy; {new Date().getFullYear()} Jorge Liauw Calo. All rights reserved.</p>
+            <p class="text-xs text-slate-500 mt-1">Built with Astro &amp; Tailwind CSS</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      if (btn && menu) {
+        btn.addEventListener('click', () => {
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!expanded));
+          menu.classList.toggle('hidden');
+        });
+      }
+    </script>
+  </body>
+</html>

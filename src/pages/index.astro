@@ -1,0 +1,208 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+
+const allPosts = await getCollection('posts');
+const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const recentPosts = sortedPosts.slice(0, 6);
+---
+
+<BaseLayout
+  title="Jorge Liauw Calo | Security Engineer at Google Cloud"
+  description="Security Engineer at Google Cloud with 13+ years of experience in Cybersecurity across highly regulated industries including Semiconductor, Banking, Fintech, and Insurance."
+>
+  <!-- Hero Section -->
+  <section class="relative pt-12 pb-20 lg:pt-20 lg:pb-28 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <!-- Left Text Column -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-medium">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+            <span>Security Engineer @ Google Cloud &bull; Google Cybershield</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
+            Architecting Resilient <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-emerald-400">Google Cloud Security</span>
+          </h1>
+
+          <!-- Mission Tagline Callout -->
+          <div class="relative pl-4 sm:pl-5 py-2 border-l-2 border-cyan-400 bg-gradient-to-r from-cyan-500/10 via-blue-500/5 to-transparent rounded-r-xl max-w-2xl">
+            <p class="text-base sm:text-lg font-medium text-slate-200 tracking-wide">
+              &ldquo;Our goal is bigger than securing Google &mdash; it&rsquo;s about <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-emerald-300 font-bold">securing the internet</span>.&rdquo;
+            </p>
+          </div>
+
+          <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl">
+            Hi, I’m <strong class="text-white font-semibold">Jorge Liauw Calo</strong> — a <strong class="text-cyan-400 font-semibold">Security Engineer at Google Cloud</strong> and part of the <strong class="text-emerald-400 font-semibold">Google Cybershield team</strong>. With over 13 years of experience in Cybersecurity, I work with customers in high-security and highly regulated industries including <strong class="text-slate-200">Semiconductor, Banking, Fintech, and Insurance</strong>.
+          </p>
+
+          <p class="text-base text-slate-400 leading-relaxed max-w-2xl">
+            I am an active member of the <strong class="text-slate-300">Google Cloud Community BeNeLux</strong> and <strong class="text-slate-300">Google Cloud Security Community Amsterdam</strong>. Here I share practical guides on assessing and improving the security of your workloads and data on Google Cloud—from IAM, Organization Policies, and Cloud Custodian to ransomware defense and DevSecOps.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a
+              href="/posts/"
+              class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white shadow-lg shadow-cyan-500/20 transition-all"
+            >
+              <span>Browse All Articles ({allPosts.length})</span>
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+
+            <a
+              href="/about/"
+              class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-slate-200 transition-all"
+            >
+              <span>About Jorge</span>
+            </a>
+          </div>
+
+          <!-- Highlights Bar -->
+          <div class="pt-6 grid grid-cols-3 gap-4 border-t border-slate-800/80 max-w-lg">
+            <div>
+              <span class="block text-2xl font-extrabold text-white">13+</span>
+              <span class="text-xs font-mono text-slate-400">Years in Cybersecurity</span>
+            </div>
+            <div>
+              <span class="block text-2xl font-extrabold text-cyan-400">Cybershield</span>
+              <span class="text-xs font-mono text-slate-400">Google Cloud Security</span>
+            </div>
+            <div>
+              <span class="block text-2xl font-extrabold text-emerald-400">BeNeLux &amp; AMS</span>
+              <span class="text-xs font-mono text-slate-400">Cloud Security Communities</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Visual Column -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            <!-- Glow frame -->
+            <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-blue-500 via-cyan-500 to-emerald-500 opacity-30 blur-xl"></div>
+
+            <!-- Main Presenter Image Card -->
+            <div class="relative rounded-2xl bg-slate-900 border border-slate-800 overflow-hidden shadow-2xl">
+              <img
+                src="/images/jorge-google-cloud-portrait.png"
+                alt="Jorge Liauw Calo — Security Engineer at Google Cloud"
+                class="w-full h-72 sm:h-80 object-cover object-center"
+              />
+              <div class="p-5 bg-slate-900/95 border-t border-slate-800 flex items-center justify-between gap-4">
+                <div>
+                  <span class="text-xs font-mono uppercase tracking-wider text-cyan-400 block">Community &amp; Speaking</span>
+                  <p class="text-sm font-semibold text-white mt-0.5">Google Cloud Community BeNeLux &amp; Security Community Amsterdam</p>
+                </div>
+                <a
+                  href="https://www.linkedin.com/in/jorgeliauw/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="shrink-0 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-cyan-300 transition-colors"
+                >
+                  Connect &rarr;
+                </a>
+              </div>
+            </div>
+
+            <!-- Floating Partner All-Star Badge Card -->
+            <div class="mt-4 p-4 rounded-2xl bg-slate-900/90 border border-slate-800/90 backdrop-blur-md flex items-center gap-4 shadow-xl">
+              <img
+                src="/images/Google_Cloud_Partner_All-stars_Solutions-Engineering_Delivery_Jorge_Liauw_Calo-2022.png"
+                alt="Google Cloud Partner All-Stars Award"
+                class="w-16 h-16 object-contain shrink-0 rounded-lg bg-slate-950 p-1 border border-slate-800"
+              />
+              <div>
+                <div class="text-xs font-mono text-amber-400 font-semibold">RECOGNITION &bull; DEC 2022</div>
+                <h2 class="text-sm font-bold text-white">Google Cloud Partner All-Star</h2>
+                <p class="text-xs text-slate-400 mt-0.5">Awarded for excellence in Solutions Engineering &amp; Delivery</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expertise Pillars -->
+  <section class="py-12 border-y border-slate-800/80 bg-slate-900/30">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl bg-slate-900/50 border border-slate-800/80">
+          <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-4">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Regulated Cloud Security</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Designing defense-in-depth foundations on Google Cloud for high-security industries (Semiconductor, Banking, Fintech, Insurance): IAM least privilege, Organization Policy constraints, and Zero Trust.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-900/50 border border-slate-800/80">
+          <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-4">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Policy-as-Code &amp; Cloud Custodian</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Automating compliance and governance with Cloud Custodian policies, real-time Cloud Monitoring metrics, CFT Scorecard, and Shift-Left DevSecOps pipelines in Cloud Build.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-900/50 border border-slate-800/80">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-4">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Community &amp; Knowledge Sharing</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Active in the Google Cloud Community BeNeLux and Google Cloud Security Community Amsterdam, hosting Cloud Security sessions, and helping enterprise engineering teams level up their cloud posture.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Posts Section -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-wider text-cyan-400 block mb-2">Technical Blog</span>
+          <h2 class="text-3xl font-extrabold text-white tracking-tight">Recent Articles &amp; Guides</h2>
+        </div>
+        <a
+          href="/posts/"
+          class="inline-flex items-center gap-2 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
+        >
+          <span>View all {allPosts.length} articles</span>
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {recentPosts.map((post) => <PostCard post={post} />)}
+      </div>
+
+      <div class="mt-14 text-center">
+        <a
+          href="/posts/"
+          class="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white transition-all shadow-lg"
+        >
+          <span>Explore Full Archive ({allPosts.length} Posts)</span>
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
