@@ -199,9 +199,9 @@ const isContact = currentPath.startsWith('/contact');
     <!-- Footer -->
     <footer class="z-10 border-t border-slate-200/80 bg-white mt-24">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 items-start">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 items-start justify-between">
           <!-- Brand & Pills -->
-          <div class="md:col-span-5">
+          <div class="md:col-span-8">
             <a href="/" class="inline-flex items-center gap-2.5 group">
               <svg class="w-5 h-5 text-[#1E4620]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 4v5c0 5-3.5 9.74-7 11-3.5-1.26-7-6-7-11V7l7-4z" />
@@ -209,7 +209,7 @@ const isContact = currentPath.startsWith('/contact');
               <span class="text-lg font-bold text-slate-900 tracking-tight group-hover:text-[#1E4620] transition-colors">Jorge Liauw Calo</span>
             </a>
 
-            <p class="text-sm text-slate-500 mt-3.5 leading-relaxed max-w-md">
+            <p class="text-sm text-slate-500 mt-3.5 leading-relaxed max-w-lg">
               Security Engineer at Google Cloud with 13+ years in Cybersecurity. Member of Google Cloud Community BeNeLux &amp; Google Cloud Security Community Amsterdam.
             </p>
 
@@ -225,7 +225,7 @@ const isContact = currentPath.startsWith('/contact');
           </div>
 
           <!-- Navigation Column -->
-          <div class="md:col-span-3">
+          <div class="md:col-span-4 md:justify-self-end">
             <h3 class="text-xs font-mono font-semibold uppercase tracking-widest text-slate-400 mb-4">
               NAVIGATION
             </h3>
@@ -271,24 +271,6 @@ const isContact = currentPath.startsWith('/contact');
                 </a>
               </li>
             </ul>
-          </div>
-
-          <!-- Engineering Stack Card -->
-          <div class="md:col-span-4">
-            <h3 class="text-xs font-mono font-semibold uppercase tracking-widest text-slate-400 mb-4">
-              ENGINEERING STACK
-            </h3>
-            <div class="p-5 rounded-2xl bg-[#F6F8F7] border border-slate-200/80">
-              <div class="flex items-center gap-2.5 mb-2">
-                <span class="inline-flex items-center justify-center w-6 h-5 rounded border border-[#234F26]/50 text-[#234F26] text-[10px] font-mono font-bold">
-                  &gt;_
-                </span>
-                <span class="text-sm font-bold text-slate-900">Production Deployment</span>
-              </div>
-              <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                Built with Astro &amp; Tailwind CSS for performance, accessibility, and minimal attack surface.
-              </p>
-            </div>
           </div>
         </div>
 
