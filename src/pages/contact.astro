@@ -1,5 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+// ============================================================================
+// CONTACT FORM CONFIGURATION
+// Option A (Recommended - Web3Forms): Paste your free access key from https://web3forms.com
+// Option B (Formspree): Leave WEB3FORMS_ACCESS_KEY empty and disable "reCAPTCHA" in Formspree settings
+// ============================================================================
+const WEB3FORMS_ACCESS_KEY = '';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mbjwkjvp';
+
+const formAction = WEB3FORMS_ACCESS_KEY
+  ? 'https://api.web3forms.com/submit'
+  : FORMSPREE_ENDPOINT;
 ---
 
 <BaseLayout
@@ -7,9 +19,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   description="Get in touch with Jorge Liauw Calo for Google Cloud Security inquiries, speaking engagements, or community events in BeNeLux and Amsterdam."
   image="/images/satellite-ground-station.webp"
 >
-  <!-- Google reCAPTCHA v2 API Script -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
   <section class="py-14 lg:py-20">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -25,55 +34,40 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </p>
           </div>
 
-          <div class="rounded-2xl overflow-hidden border border-slate-200/90 bg-white shadow-md">
-            <img
-              src="/images/satellite-ground-station.webp"
-              alt="Satellite Ground Station"
-              class="w-full h-48 object-cover"
-            />
-            <div class="p-5 space-y-4">
-              <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 shrink-0">
-                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
-                  </svg>
-                </div>
-                <div>
-                  <span class="block text-xs font-mono text-slate-500">Direct Network</span>
-                  <a
-                    href="https://www.linkedin.com/in/jorgeliauw/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-sm font-semibold text-blue-600 hover:underline"
-                  >
-                    linkedin.com/in/jorgeliauw
-                  </a>
-                </div>
+          <div class="space-y-4 pt-2">
+            <a
+              href="https://www.linkedin.com/in/jorgeliauw/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-200/90 hover:border-blue-500/40 shadow-sm transition-all group"
+            >
+              <div class="w-11 h-11 rounded-xl bg-blue-50 border border-blue-200/60 flex items-center justify-center text-[#0A66C2] group-hover:bg-[#0A66C2] group-hover:text-white transition-colors">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                </svg>
               </div>
+              <div>
+                <div class="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Connect on LinkedIn</div>
+                <div class="text-xs text-slate-500 font-mono">linkedin.com/in/jorgeliauw</div>
+              </div>
+            </a>
 
-              <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-[#1E4620] shrink-0">
-                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
-                </div>
-                <div>
-                  <span class="block text-xs font-mono text-slate-500">Role &amp; Organization</span>
-                  <span class="text-sm font-semibold text-slate-900">Security Engineer @ Google Cloud</span>
-                </div>
+            <div class="flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm">
+              <div class="w-11 h-11 rounded-xl bg-emerald-50 border border-emerald-200/60 flex items-center justify-center text-[#1E4620]">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
               </div>
+              <div>
+                <div class="text-sm font-bold text-slate-900">Location</div>
+                <div class="text-xs text-slate-500 font-mono">Amsterdam, Netherlands (Google Cloud BeNeLux)</div>
+              </div>
+            </div>
 
-              <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-lg bg-cyan-50 border border-cyan-200 flex items-center justify-center text-cyan-700 shrink-0">
-                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <span class="block text-xs font-mono text-slate-500">Communities</span>
-                  <span class="text-sm font-semibold text-slate-900">Google Cloud BeNeLux &amp; Security AMS</span>
-                </div>
-              </div>
+            <div class="p-4 rounded-2xl bg-[#F0F4F1] border border-[#DCE5DE] text-xs text-[#234F26] leading-relaxed">
+              <strong class="font-semibold block mb-1">Spam-Protected Contact Form</strong>
+              Protected by invisible honeypot &amp; anti-bot verification — no annoying image puzzles required.
             </div>
           </div>
         </div>
@@ -92,10 +86,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
             <form
               id="contact-form"
-              action="https://formspree.io/f/mbjwkjvp"
+              action={formAction}
               method="POST"
               class="space-y-5"
             >
+              {WEB3FORMS_ACCESS_KEY && (
+                <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+              )}
+
+              <!-- Invisible Honeypot anti-spam fields (supported by both Formspree & Web3Forms) -->
+              <input type="text" name="_gotcha" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+              <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+
               <div>
                 <label for="name" class="block text-xs font-mono uppercase tracking-wider text-slate-600 font-semibold mb-2">
                   Your Name *
@@ -133,7 +135,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <input
                   type="text"
                   id="subject"
-                  name="_subject"
+                  name="subject"
                   maxlength="150"
                   placeholder="Google Cloud Security Inquiry / Community Event"
                   class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-blue-500 focus:bg-white transition-colors"
@@ -155,18 +157,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 ></textarea>
               </div>
 
-              <!-- Honeypot anti-spam field -->
-              <input type="text" name="_gotcha" class="hidden" aria-hidden="true" tabindex="-1" />
-
-              <!-- Google reCAPTCHA v2 Widget (Light Theme) -->
-              <div class="pt-1 overflow-x-auto">
-                <div
-                  class="g-recaptcha"
-                  data-sitekey="6LeJq9weAAAAAB9ZoTdpLUIdbbtN7Dhd_f-tHN0x"
-                  data-theme="light"
-                ></div>
-              </div>
-
               <button
                 id="submit-btn"
                 type="submit"
@@ -185,6 +175,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     const form = document.getElementById('contact-form') as HTMLFormElement | null;
     const statusBox = document.getElementById('form-status');
     const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+    const formLoadedAt = Date.now();
 
     function showStatus(message: string, type: 'error' | 'success') {
       if (!statusBox) return;
@@ -201,10 +192,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        // Check if Google reCAPTCHA is loaded and completed
-        const recaptchaResponse = (window as any).grecaptcha?.getResponse?.();
-        if (!recaptchaResponse) {
-          showStatus('Please complete the "I\'m not a robot" reCAPTCHA checkbox before sending your message.', 'error');
+        // Anti-bot timing check (block automated scripts submitting in under 1.2 seconds)
+        if (Date.now() - formLoadedAt < 1200) {
+          showStatus('Please wait a moment before submitting the form.', 'error');
           return;
         }
 
@@ -226,11 +216,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           if (response.ok) {
             showStatus('Thank you! Your message has been sent successfully. I will get back to you soon.', 'success');
             form.reset();
-            (window as any).grecaptcha?.reset?.();
           } else {
             const data = await response.json().catch(() => null);
-            const errorMsg = data?.errors?.map((err: any) => err.message).join(', ') || 'Oops! There was a problem submitting your form. Please try again.';
-            showStatus(errorMsg, 'error');
+            const rawError = data?.errors?.map((err: any) => err.message).join(', ') || data?.message || '';
+            if (rawError.toLowerCase().includes('recaptcha')) {
+              showStatus(
+                'Formspree reCAPTCHA is enabled on the server. To fix this: open your Formspree Dashboard → Form Settings → Spam Protection and toggle OFF "reCAPTCHA" (or switch to Web3Forms).',
+                'error'
+              );
+            } else {
+              showStatus(rawError || 'Oops! There was a problem submitting your form. Please try again.', 'error');
+            }
           }
         } catch {
           showStatus('Network error while sending message. Please check your connection and try again.', 'error');
