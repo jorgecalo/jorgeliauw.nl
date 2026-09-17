@@ -12,10 +12,16 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://jorgeliauw.nl');
+const currentPath = Astro.url.pathname;
+
+const isHome = currentPath === '/' || currentPath === '';
+const isArticles = currentPath.startsWith('/posts');
+const isAbout = currentPath.startsWith('/about');
+const isContact = currentPath.startsWith('/contact');
 ---
 
 <!doctype html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -56,83 +62,133 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://jorgelia
       gtag('config', 'G-P8ZKGKRFZ8');
     </script>
   </head>
-  <body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-cyan-500/30 selection:text-cyan-200 min-h-screen flex flex-col relative overflow-x-hidden">
-    <!-- Subtle Background Glow & Grid -->
+  <body class="bg-[#F8FAFC] text-slate-900 font-sans antialiased selection:bg-blue-500/20 selection:text-blue-900 min-h-screen flex flex-col relative overflow-x-hidden">
+    <!-- Subtle Light Background Grid & Soft Accents -->
     <div class="fixed inset-0 pointer-events-none z-0">
-      <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
-      <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[130px]"></div>
-      <div class="absolute top-1/3 right-10 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[120px]"></div>
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f040_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f040_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+      <div class="absolute top-0 left-1/4 w-[550px] h-[550px] bg-blue-400/10 rounded-full blur-[140px]"></div>
+      <div class="absolute top-1/3 right-10 w-[450px] h-[450px] bg-emerald-400/10 rounded-full blur-[130px]"></div>
     </div>
 
     <!-- Header Navigation -->
-    <header class="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/80 border-b border-slate-800/80">
-      <!-- Subtle Google 4-Color Top Accent Bar -->
-      <div class="w-full h-[3px] grid grid-cols-4 relative overflow-hidden">
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-white/90 border-b border-slate-200/80 shadow-[0_1px_3px_rgba(15,23,42,0.03)]">
+      <!-- Top Google 4-Color Accent Bar -->
+      <div class="w-full h-[3.5px] grid grid-cols-4">
         <div class="bg-[#4285F4]"></div>
         <div class="bg-[#EA4335]"></div>
         <div class="bg-[#FBBC05]"></div>
         <div class="bg-[#34A853]"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-[#4285F4]/40 via-[#EA4335]/40 to-[#34A853]/40 blur-sm"></div>
       </div>
 
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-20 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-3 group">
-          <div class="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-gradient-to-br from-blue-500 via-cyan-400 to-emerald-400 p-[1px] shadow-lg shadow-cyan-500/10 group-hover:shadow-cyan-500/25 transition-all shrink-0">
-            <div class="w-full h-full bg-slate-950 rounded-[11px] flex items-center justify-center">
-              <svg class="w-5 h-5 text-cyan-400 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 md:h-20 flex flex-col md:flex-row items-center justify-between gap-3.5 md:gap-4">
+        <!-- Brand Identity (Matches Screenshot Design) -->
+        <div class="w-full md:w-auto flex items-center justify-between">
+          <a href="/" class="flex items-center gap-3.5 group">
+            <!-- Rounded White Icon Box with Shield & Green Status Dot -->
+            <div class="relative w-11 h-11 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-center justify-center group-hover:border-emerald-500/40 transition-all shrink-0">
+              <svg class="w-5 h-5 text-[#1E4620]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
               </svg>
+              <span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-[#34A853] ring-2 ring-white"></span>
             </div>
-          </div>
-          <div>
-            <span class="text-base md:text-lg font-bold tracking-tight text-white group-hover:text-cyan-400 transition-colors">Jorge Liauw Calo</span>
-            <span class="block text-[11px] md:text-xs font-mono text-slate-400">Security Engineer @ Google Cloud</span>
-          </div>
-        </a>
 
-        <!-- Desktop Nav (Untouched on md+ screens) -->
-        <nav class="hidden md:flex items-center gap-1 lg:gap-2">
-          <a href="/" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all">Home</a>
-          <a href="/posts/" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all">Articles</a>
-          <a href="/about/" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all">About</a>
-          <a href="/contact/" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all">Contact</a>
-          <div class="h-5 w-[1px] bg-slate-800 mx-2"></div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-base sm:text-lg font-bold tracking-tight text-slate-900 group-hover:text-blue-600 transition-colors">
+                  Jorge Liauw Calo
+                </span>
+                <!-- 4 Google Colored Dots -->
+                <span class="inline-flex items-center gap-1" aria-hidden="true">
+                  <span class="w-2 h-2 rounded-full bg-[#4285F4]"></span>
+                  <span class="w-2 h-2 rounded-full bg-[#EA4335]"></span>
+                  <span class="w-2 h-2 rounded-full bg-[#FBBC05]"></span>
+                  <span class="w-2 h-2 rounded-full bg-[#34A853]"></span>
+                </span>
+              </div>
+              <div class="flex items-center gap-1.5 text-xs font-medium text-slate-500 mt-0.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#34A853]"></span>
+                <span>Security Engineer @ Google Cloud</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Mobile LinkedIn Quick Button -->
           <a
             href="https://www.linkedin.com/in/jorgeliauw/"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white shadow-md shadow-blue-500/20 transition-all"
+            aria-label="LinkedIn Profile"
+            class="md:hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200/80 transition-colors"
           >
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <svg class="w-3.5 h-3.5 text-[#0A66C2] fill-current" viewBox="0 0 24 24">
               <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
             </svg>
             <span>LinkedIn</span>
           </a>
-        </nav>
+        </div>
 
-        <!-- Mobile Top LinkedIn CTA (Visible on mobile in place of hamburger) -->
-        <div class="md:hidden">
+        <!-- Segmented Pill Navigation Menu (Visible on Both Desktop & Mobile) -->
+        <div class="flex items-center gap-3 w-full md:w-auto justify-center md:justify-end">
+          <nav
+            aria-label="Primary Navigation"
+            class="bg-[#F1F5F9] border border-slate-200/90 rounded-full p-1.5 inline-flex items-center gap-1 shadow-inner w-full sm:w-auto justify-between sm:justify-start"
+          >
+            <a
+              href="/"
+              class={`px-4 sm:px-5 py-1.5 rounded-full text-xs sm:text-sm transition-all text-center flex-1 sm:flex-initial ${
+                isHome
+                  ? 'bg-white text-[#1E4620] font-semibold shadow-sm border border-slate-200/60'
+                  : 'text-slate-600 hover:text-slate-900 font-medium'
+              }`}
+            >
+              Home
+            </a>
+            <a
+              href="/posts/"
+              class={`px-4 sm:px-5 py-1.5 rounded-full text-xs sm:text-sm transition-all text-center flex-1 sm:flex-initial ${
+                isArticles
+                  ? 'bg-white text-[#1E4620] font-semibold shadow-sm border border-slate-200/60'
+                  : 'text-slate-600 hover:text-slate-900 font-medium'
+              }`}
+            >
+              Articles
+            </a>
+            <a
+              href="/about/"
+              class={`px-4 sm:px-5 py-1.5 rounded-full text-xs sm:text-sm transition-all text-center flex-1 sm:flex-initial ${
+                isAbout
+                  ? 'bg-white text-[#1E4620] font-semibold shadow-sm border border-slate-200/60'
+                  : 'text-slate-600 hover:text-slate-900 font-medium'
+              }`}
+            >
+              About
+            </a>
+            <a
+              href="/contact/"
+              class={`px-4 sm:px-5 py-1.5 rounded-full text-xs sm:text-sm transition-all text-center flex-1 sm:flex-initial ${
+                isContact
+                  ? 'bg-white text-[#1E4620] font-semibold shadow-sm border border-slate-200/60'
+                  : 'text-slate-600 hover:text-slate-900 font-medium'
+              }`}
+            >
+              Contact
+            </a>
+          </nav>
+
+          <!-- Desktop LinkedIn Pill Button -->
           <a
             href="https://www.linkedin.com/in/jorgeliauw/"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-sm"
+            class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/90 shadow-sm transition-all"
           >
-            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+            <svg class="w-3.5 h-3.5 text-[#0A66C2] fill-current" viewBox="0 0 24 24">
               <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
             </svg>
             <span>LinkedIn</span>
           </a>
         </div>
       </div>
-
-      <!-- Mobile Always-Visible Horizontal Navigation Bar -->
-      <nav aria-label="Mobile Navigation" class="md:hidden flex items-center justify-around border-t border-slate-800/80 bg-slate-900/60 px-2 py-2">
-        <a href="/" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-200 hover:text-cyan-400 hover:bg-slate-800/70 transition-colors">Home</a>
-        <a href="/posts/" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-200 hover:text-cyan-400 hover:bg-slate-800/70 transition-colors">Articles</a>
-        <a href="/about/" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-200 hover:text-cyan-400 hover:bg-slate-800/70 transition-colors">About</a>
-        <a href="/contact/" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-200 hover:text-cyan-400 hover:bg-slate-800/70 transition-colors">Contact</a>
-      </nav>
     </header>
 
     <!-- Main Content -->
@@ -141,29 +197,35 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://jorgelia
     </main>
 
     <!-- Footer -->
-    <footer class="z-10 border-t border-slate-800/80 bg-slate-950/90 mt-24">
+    <footer class="z-10 border-t border-slate-200/80 bg-white mt-24">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           <div>
-            <div class="flex items-center gap-2.5">
-              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span class="font-bold text-white tracking-tight">jorgeliauw.nl</span>
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#34A853]"></span>
+              <span class="font-bold text-slate-900 tracking-tight">jorgeliauw.nl</span>
+              <span class="inline-flex items-center gap-1 ml-1" aria-hidden="true">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#4285F4]"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-[#EA4335]"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-[#FBBC05]"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-[#34A853]"></span>
+              </span>
             </div>
-            <p class="text-sm text-slate-400 mt-2">
-              Security Engineer at <strong class="text-slate-200">Google Cloud</strong> with 13+ years in Cybersecurity. Member of Google Cloud Community BeNeLux &amp; Google Cloud Security Community Amsterdam.
+            <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+              Security Engineer at <strong class="text-slate-900">Google Cloud</strong> (Google Cybershield) with 13+ years in Cybersecurity. Member of Google Cloud Community BeNeLux &amp; Security Community Amsterdam.
             </p>
           </div>
 
-          <div class="flex flex-wrap gap-6 md:justify-center text-sm text-slate-400">
-            <a href="/" class="hover:text-white transition-colors">Home</a>
-            <a href="/posts/" class="hover:text-white transition-colors">Articles</a>
-            <a href="/about/" class="hover:text-white transition-colors">About</a>
-            <a href="/contact/" class="hover:text-white transition-colors">Contact</a>
+          <div class="flex flex-wrap gap-6 md:justify-center text-sm font-medium text-slate-600">
+            <a href="/" class="hover:text-blue-600 transition-colors">Home</a>
+            <a href="/posts/" class="hover:text-blue-600 transition-colors">Articles</a>
+            <a href="/about/" class="hover:text-blue-600 transition-colors">About</a>
+            <a href="/contact/" class="hover:text-blue-600 transition-colors">Contact</a>
           </div>
 
-          <div class="md:text-right text-sm text-slate-400">
+          <div class="md:text-right text-sm text-slate-500">
             <p>&copy; {new Date().getFullYear()} Jorge Liauw Calo. All rights reserved.</p>
-            <p class="text-xs text-slate-500 mt-1">Built with Astro &amp; Tailwind CSS</p>
+            <p class="text-xs text-slate-400 mt-1">Built with Astro &amp; Tailwind CSS</p>
           </div>
         </div>
       </div>
